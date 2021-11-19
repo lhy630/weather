@@ -18,12 +18,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * µ¥Ôª²âÊÔÀà
- * ÒòÊ±¼ä¹ØÏµ£¬ÒÔÏÂ¼¸µãÃ»ÓĞÍê³É£º
- * 1¡¢Ã»ÓĞ¶ÔÒì³£¡¢ÇëÇó¡¢·µ»Ø½øĞĞ·â×°
- * 2¡¢Ã»ÓĞ¶ÔÏà¹Ø²ÎÊı½øĞĞĞ£Ñé
- * 3¡¢×¢½â²»È«
- * ¼ûÁÂ£¡
+ * å•å…ƒæµ‹è¯•ç±»
+ * å› æ—¶é—´å…³ç³»ï¼Œä»¥ä¸‹å‡ ç‚¹æ²¡æœ‰å®Œæˆï¼š
+ * 1ã€æ²¡æœ‰å¯¹å¼‚å¸¸ã€è¯·æ±‚ã€è¿”å›è¿›è¡Œå°è£…
+ * 2ã€æ²¡æœ‰å¯¹ç›¸å…³å‚æ•°è¿›è¡Œæ ¡éªŒ
+ * 3ã€æ³¨é‡Šä¸å…¨
+ * è§è°…ï¼
  */
 @Slf4j
 @SpringBootTest
@@ -41,7 +41,7 @@ class WeatherApplicationTests {
     }
 
     /**
-     * »ñÈ¡ÆøÎÂ²âÊÔ
+     * è·å–æ°”æ¸©æµ‹è¯•
      */
     @Test
     public void tempTest() {
@@ -59,7 +59,7 @@ class WeatherApplicationTests {
     }
 
     /**
-     * »ñÈ¡ÆøÎÂÒì³£ÖØÊÔ²âÊÔ
+     * è·å–æ°”æ¸©å¼‚å¸¸é‡è¯•æµ‹è¯•
      */
     @Test
     public void retryTempTest() {
@@ -77,12 +77,12 @@ class WeatherApplicationTests {
     }
 
     /**
-     * ÆøÎÂ½Ó¿ÚÏŞÁ÷²âÊÔ
+     * æ°”æ¸©æ¥å£é™æµæµ‹è¯•
      * @throws InterruptedException
      */
     @Test
     public void rateLimitTest() throws InterruptedException {
-        //Ä£Äâ100¸öÇëÇó.tps¿ÉÄÜ³¬¹ı100,¾ßÌå¿´Ö´ĞĞÊ±¼ä
+        //æ¨¡æ‹Ÿ100ä¸ªè¯·æ±‚.tpså¯èƒ½è¶…è¿‡100,å…·ä½“çœ‹æ‰§è¡Œæ—¶é—´
         int reqNum = 50;
         ExecutorService executorService = Executors.newFixedThreadPool(20);
         CountDownLatch count = new CountDownLatch(reqNum);
@@ -100,16 +100,16 @@ class WeatherApplicationTests {
     }
 
     /**
-     * Ê¡ÊĞÇø²éÑ¯²âÊÔ
+     * çœå¸‚åŒºæŸ¥è¯¢æµ‹è¯•
      */
     @Test
     public void addressTest() {
         try {
-            //Ê¡·İ
+            //çœä»½
             //String uri = "/data/city3jdata/province";
-            //ÊĞ
+            //å¸‚
             //String uri = "/data/city3jdata/city/10119";
-            //Çø/ÏØ
+            //åŒº/å¿
             String uri = "/data/city3jdata/county/04";
             MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get(uri)).andReturn();
             int status = result.getResponse().getStatus();
